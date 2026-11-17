@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>感知器與 MNIST：神經網路的第一步｜叡的生成式 AI 講義</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="inner">
+      <a class="brand" href="../">叡的<span>生成式 AI</span>講義</a>
+      <div class="links">
+        <a href="../#lessons">全部講義</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="lesson">
+    <header class="lesson-header">
+      <div class="meta">
+        <span class="pill">第1-2週</span>
+        <span class="tag" data-tag="基礎觀念">基礎觀念</span>
+      </div>
+      <h1>感知器與 MNIST：神經網路的第一步</h1>
+      <p class="subtitle">一個會「加權投票」的小神經元，就能學會認手寫數字。</p>
+    </header>
+
+    <section class="key-points">
+      <h2>本週重點</h2>
+      <ul>
+        <li>感知器（Perceptron）是最簡單的神經網路：輸入 × 權重，加總後過一個門檻。</li>
+        <li>MNIST 是 28×28 的手寫數字圖片資料集，是深度學習的 Hello World。</li>
+        <li>訓練 = 猜錯就調整權重，重複很多次直到猜得夠準。</li>
+        <li>同一份範例，用不同 AI（GPT、Gemini、Claude、Copilot）寫出來風格差很多。</li>
+      </ul>
+    </section>
+
+    <section class="concept">
+      <h2>核心概念</h2>
+      <p><dfn>感知器</dfn>把每個輸入乘上一個<dfn>權重</dfn>，全部加起來再加上<dfn>偏差值</dfn>，超過門檻就輸出 1，否則輸出 0。MNIST 的一張圖有 784 個像素，攤平成 784 個輸入，再用 10 個輸出代表 0～9。</p><p>訓練時用<dfn>損失函數</dfn>衡量猜得多錯，再用<dfn>梯度下降</dfn>往「錯得比較少」的方向微調權重。一輪看完全部資料叫一個 <dfn>epoch</dfn>。</p>
+      <div class="callout"><strong>比喻</strong>像一群評審在打分數：每個像素是一位評審，權重是他講話有多大聲。猜錯了，就把帶錯方向的評審音量調小。</div>
+    </section>
+
+    <section class="steps">
+      <h2>實作流程</h2>
+      <ol>
+        <li>載入 MNIST，把像素值除以 255 縮到 0～1。</li>
+        <li>把 28×28 攤平成 784 維向量，標籤轉成 one-hot。</li>
+        <li>建立一層 Dense(10, softmax) 的模型。</li>
+        <li>設定 optimizer 與 loss，fit 幾個 epoch。</li>
+        <li>用測試集 evaluate，看準確率。</li>
+      </ol>
+      <pre><code>model = keras.Sequential([
+    keras.layers.Input(shape=(784,)),
+    keras.layers.Dense(10, activation=&quot;softmax&quot;)
+])
+model.compile(optimizer=&quot;adam&quot;,
+              loss=&quot;categorical_crossentropy&quot;,
+              metrics=[&quot;accuracy&quot;])
+model.fit(x_train, y_train, epochs=5, batch_size=128)</code></pre>
+    </section>
+
+    <section class="homework">
+      <h2>我的作業</h2>
+      <p>加分作業研究 <code>Perceptron_MINST_Claude.py</code>：看不懂的地方逐段問 AI，再比較 Bito、Copilot、Gemini、GPT、Claude 五個版本的寫法差異，最後整理成心得投影片。</p>
+    </section>
+
+    <section class="pitfalls">
+      <h2>踩雷與提醒</h2>
+      <div class="callout warn"><strong>先確認有沒有用到 GPU</strong>範例裡有 Hello_GPU，先跑一次確認環境，不然訓練會慢很多。</div>
+      <div class="callout warn"><strong>資料要正規化</strong>像素值沒除以 255 時，訓練會不穩定、準確率上不去。</div>
+    </section>
+
+    <section class="next">
+      <h2>延伸思考</h2>
+      <ul>
+        <li>一層感知器只能畫直線分界，要加幾層、用什麼激活函數才能處理更複雜的圖？</li>
+        <li>現在的 LLM 也是神經網路，它和這個 784→10 的小模型差在哪裡？</li>
+      </ul>
+    </section>
+  </main>
+
+  <nav class="pager"></nav>
+
+  <footer>靜宜大學 資工二A 蔡儀叡 · 用 AI 依 CLAUDE.md 規則製作</footer>
+
+  <script src="../assets/lessons.js"></script>
+  <script src="../assets/lesson.js"></script>
+</body>
+</html>

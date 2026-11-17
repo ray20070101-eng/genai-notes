@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{標題}}｜叡的生成式 AI 講義</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="inner">
+      <a class="brand" href="../">叡的<span>生成式 AI</span>講義</a>
+      <div class="links">
+        <a href="../#lessons">全部講義</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="lesson">
+    <header class="lesson-header">
+      <div class="meta">
+        <span class="pill">{{週次，例如 第12週}}</span>
+        <span class="tag" data-tag="{{標籤}}">{{標籤}}</span>
+      </div>
+      <h1>{{標題}}</h1>
+      <p class="subtitle">{{一句話副標}}</p>
+    </header>
+
+    <section class="key-points">
+      <h2>本週重點</h2>
+      <ul>
+        <li>{{重點 1}}</li>
+        <li>{{重點 2}}</li>
+        <li>{{重點 3}}</li>
+      </ul>
+    </section>
+
+    <section class="concept">
+      <h2>核心概念</h2>
+      <p>{{用自己的話解釋，名詞第一次出現用 <dfn>名詞</dfn> 標起來}}</p>
+      <div class="callout"><strong>比喻</strong>{{一個生活化的比喻}}</div>
+    </section>
+
+    <section class="steps">
+      <h2>實作流程</h2>
+      <ol>
+        <li>{{步驟 1}}</li>
+        <li>{{步驟 2}}</li>
+      </ol>
+      <pre><code>{{程式碼（沒有就刪掉整個 pre）}}</code></pre>
+    </section>
+
+    <section class="homework">
+      <h2>我的作業</h2>
+      <p>{{這週作業做了什麼、選什麼主題}}</p>
+    </section>
+
+    <section class="pitfalls">
+      <h2>踩雷與提醒</h2>
+      <div class="callout warn"><strong>{{雷點 1 標題}}</strong>{{說明}}</div>
+      <div class="callout warn"><strong>{{雷點 2 標題}}</strong>{{說明}}</div>
+    </section>
+
+    <section class="next">
+      <h2>延伸思考</h2>
+      <ul>
+        <li>{{連到之後主題的問題}}</li>
+      </ul>
+    </section>
+  </main>
+
+  <nav class="pager"></nav>
+
+  <footer>靜宜大學 資工二A 蔡儀叡 · 用 AI 依 CLAUDE.md 規則製作</footer>
+
+  <script src="../assets/lessons.js"></script>
+  <script src="../assets/lesson.js"></script>
+</body>
+</html>

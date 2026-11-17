@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG：讓 AI 讀你的資料再回答｜叡的生成式 AI 講義</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="inner">
+      <a class="brand" href="../">叡的<span>生成式 AI</span>講義</a>
+      <div class="links">
+        <a href="../#lessons">全部講義</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="lesson">
+    <header class="lesson-header">
+      <div class="meta">
+        <span class="pill">第7週</span>
+        <span class="tag" data-tag="RAG">RAG</span>
+      </div>
+      <h1>RAG：讓 AI 讀你的資料再回答</h1>
+      <p class="subtitle">先找資料，再生成答案，降低亂掰的機率。</p>
+    </header>
+
+    <section class="key-points">
+      <h2>本週重點</h2>
+      <ul>
+        <li><dfn>RAG</dfn>（Retrieval-Augmented Generation）= 檢索 + 生成。</li>
+        <li>文件先切段，再轉成<dfn>向量</dfn>存進向量資料庫。</li>
+        <li>使用者提問時找出最相近的幾段，連同問題一起交給 LLM。</li>
+        <li>作業分兩份 Colab：RAG01 建資料庫、RAG02 做問答。</li>
+      </ul>
+    </section>
+
+    <section class="concept">
+      <h2>核心概念</h2>
+      <p>LLM 不知道你的私人資料，也可能過時。RAG 的做法是把文件切成小段，用<dfn>Embedding 模型</dfn>把每段轉成一串數字（向量），意思相近的句子向量也會接近。</p><p>提問時把問題也轉成向量，找出距離最近的 k 段，塞進 Prompt：「請根據以下資料回答……」。這樣答案有根據，也比較不會<dfn>幻覺</dfn>。</p>
+      <div class="callout"><strong>比喻</strong>像開書考：LLM 是很會寫作文的學生，RAG 幫它先翻到課本對的那幾頁，再讓它作答。</div>
+    </section>
+
+    <section class="steps">
+      <h2>實作流程</h2>
+      <ol>
+        <li>選一份文件當知識來源。</li>
+        <li>RAG01：切段 → embedding → 建向量資料庫 → 打包成 rag-data.zip。</li>
+        <li>RAG02：下載並解壓 rag-data.zip，載入資料庫。</li>
+        <li>問題 → 檢索相關段落 → 組 Prompt → LLM 回答。</li>
+        <li>用 Gradio 做成對話介面測試。</li>
+      </ol>
+      <pre><code>docs = retriever.invoke(question)          # 找最相近的段落
+context = &quot;\n\n&quot;.join(d.page_content for d in docs)
+prompt = f&quot;&quot;&quot;請只根據以下資料回答，找不到就說不知道。
+資料：
+{context}
+
+問題：{question}&quot;&quot;&quot;
+answer = llm.invoke(prompt)</code></pre>
+    </section>
+
+    <section class="homework">
+      <h2>我的作業</h2>
+      <p>我的知識來源是童軍技能：童軍諾言、繩結、旗語。改寫老師的 RAG01 建出向量資料庫，再用 RAG02 做成可以問童軍技能的機器人。</p>
+    </section>
+
+    <section class="pitfalls">
+      <h2>踩雷與提醒</h2>
+      <div class="callout warn"><strong>切段大小會影響結果</strong>切太大檢索不準、切太小上下文不夠，要實際試幾種。</div>
+      <div class="callout warn"><strong>zip 路徑對不上</strong>RAG02 解壓後的資料夾名稱要跟程式裡載入的路徑一致。</div>
+    </section>
+
+    <section class="next">
+      <h2>延伸思考</h2>
+      <ul>
+        <li>如果 AI 不只要「查資料」，還要自己決定下一步做什麼呢？（→ Agent）</li>
+      </ul>
+    </section>
+  </main>
+
+  <nav class="pager"></nav>
+
+  <footer>靜宜大學 資工二A 蔡儀叡 · 用 AI 依 CLAUDE.md 規則製作</footer>
+
+  <script src="../assets/lessons.js"></script>
+  <script src="../assets/lesson.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGENTS.md / CLAUDE.md：給 AI 的專案說明書｜叡的生成式 AI 講義</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="inner">
+      <a class="brand" href="../">叡的<span>生成式 AI</span>講義</a>
+      <div class="links">
+        <a href="../#lessons">全部講義</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="lesson">
+    <header class="lesson-header">
+      <div class="meta">
+        <span class="pill">第9週</span>
+        <span class="tag" data-tag="開發工具">開發工具</span>
+      </div>
+      <h1>AGENTS.md / CLAUDE.md：給 AI 的專案說明書</h1>
+      <p class="subtitle">把規則寫下來，AI 每次都能照同一套方式接著做。</p>
+    </header>
+
+    <section class="key-points">
+      <h2>本週重點</h2>
+      <ul>
+        <li><dfn>AGENTS.md</dfn> / <dfn>CLAUDE.md</dfn> 是放在專案根目錄、寫給 AI 看的說明文件。</li>
+        <li>內容包含：專案目的、風格、檔案結構、命名規則、新增內容的步驟、AI 要遵守的規則。</li>
+        <li>和 Vibe Coding 的差別：不是做出一頁，而是建立一套能重複使用的製作方式。</li>
+        <li>這個講義站本身就是作業成果。</li>
+      </ul>
+    </section>
+
+    <section class="concept">
+      <h2>核心概念</h2>
+      <p>AI 每次開新對話都會忘記上次的約定。把規則寫成 <code>CLAUDE.md</code>，Claude Code 會自動讀取；<code>AGENTS.md</code> 則是 Codex 等工具慣用的名稱，我讓它指向 CLAUDE.md，兩邊都通用。</p><p>好的規則要<strong>具體到可以檢查</strong>：例如「檔名用 <code>NN-keyword.html</code>」「每篇一定有七個區塊」，而不是「保持整齊」。</p>
+      <div class="callout"><strong>比喻</strong>像給新進工讀生的交接手冊：寫得夠清楚，任何人（或任何 AI）來都能做出一樣品質的東西。</div>
+    </section>
+
+    <section class="steps">
+      <h2>實作流程</h2>
+      <ol>
+        <li>決定專案：生成式 AI 課程講義站。</li>
+        <li>寫 CLAUDE.md：目的、檔案結構、命名、新增步驟、固定區塊、標籤、風格、AI 規則、自我檢查清單。</li>
+        <li>做共用的 style.css、lessons.js 和講義模板。</li>
+        <li>照規則讓 AI 產生每一篇講義。</li>
+        <li>上傳 GitHub、開 GitHub Pages。</li>
+      </ol>
+      <pre><code>## 4. 新增一篇講義的固定步驟
+1. 複製 templates/lesson-template.html 到 lessons/NN-keyword.html
+2. 把所有佔位文字換成實際內容，不能留下任何佔位符
+3. 在 assets/lessons.js 的 LESSONS 陣列最後面加一筆
+4. 不需要改 index.html，首頁會自動產生卡片</code></pre>
+    </section>
+
+    <section class="homework">
+      <h2>我的作業</h2>
+      <p>以後要新增第 12 週的講義，只要跟 AI 說「依照 CLAUDE.md 新增一篇第 12 週 Diffusion 的講義」，AI 就會複製模板、照七個固定區塊寫內容、用對的檔名、在 lessons.js 加一筆，首頁和上一篇／下一篇都會自動更新。</p>
+    </section>
+
+    <section class="pitfalls">
+      <h2>踩雷與提醒</h2>
+      <div class="callout warn"><strong>規則寫太抽象</strong>「風格一致」AI 做不到；「只能用 style.css 的 CSS 變數」才做得到。</div>
+      <div class="callout warn"><strong>首頁要手動改很容易漏</strong>所以我把清單集中在 lessons.js，首頁和上下篇都從這裡讀。</div>
+    </section>
+
+    <section class="next">
+      <h2>延伸思考</h2>
+      <ul>
+        <li>如果講義越來越多，要不要加搜尋或依標籤篩選？這條規則該怎麼寫進 CLAUDE.md？</li>
+      </ul>
+    </section>
+  </main>
+
+  <nav class="pager"></nav>
+
+  <footer>靜宜大學 資工二A 蔡儀叡 · 用 AI 依 CLAUDE.md 規則製作</footer>
+
+  <script src="../assets/lessons.js"></script>
+  <script src="../assets/lesson.js"></script>
+</body>
+</html>

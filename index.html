@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>叡的生成式 AI 講義站</title>
+  <meta name="description" content="TAICA 生成式AI 課程每週主題整理成的講義。">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="inner">
+      <a class="brand" href="./">叡的<span>生成式 AI</span>講義</a>
+      <div class="links">
+        <a href="#lessons">講義</a>
+        <a href="https://github.com/ray20070101-eng/genai-notes">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow">TAICA · 文字與圖像生成的原理與實務</div>
+    <h1>一週一頁，<br>把生成式 AI 學懂。</h1>
+    <p>這裡是我修課時整理的講義：每篇都有本週重點、核心概念、實作流程、作業紀錄和踩雷提醒。網站本身也是用 AI 依照 <code>CLAUDE.md</code> 的規則一頁一頁做出來的。</p>
+  </header>
+
+  <main id="lessons" class="grid"></main>
+
+  <footer>靜宜大學 資工二A 蔡儀叡 · 用 AI 依 CLAUDE.md 規則製作</footer>
+
+  <script src="assets/lessons.js"></script>
+  <script>
+    const grid = document.getElementById("lessons");
+    grid.innerHTML = visibleLessons().map(l => `
+      <a class="card" href="lessons/${l.file}">
+        <span class="num">#${l.id}</span>
+        <h2>${l.title}</h2>
+        <p>${l.summary}</p>
+        <div class="meta">
+          <span class="pill">${l.week}</span>
+          <span class="tag" data-tag="${l.tag}">${l.tag}</span>
+        </div>
+      </a>`).join("");
+  </script>
+</body>
+</html>

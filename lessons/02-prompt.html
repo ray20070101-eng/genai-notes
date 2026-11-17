@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>和 AI 一起設計好用的 Prompt｜叡的生成式 AI 講義</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="inner">
+      <a class="brand" href="../">叡的<span>生成式 AI</span>講義</a>
+      <div class="links">
+        <a href="../#lessons">全部講義</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="lesson">
+    <header class="lesson-header">
+      <div class="meta">
+        <span class="pill">第4週</span>
+        <span class="tag" data-tag="Prompt">Prompt</span>
+      </div>
+      <h1>和 AI 一起設計好用的 Prompt</h1>
+      <p class="subtitle">從一句直覺的指令，迭代成換到哪個 LLM 都能用的 Prompt。</p>
+    </header>
+
+    <section class="key-points">
+      <h2>本週重點</h2>
+      <ul>
+        <li><dfn>Prompt</dfn> 就是你給 LLM 的指令，品質直接決定輸出品質。</li>
+        <li>好 Prompt 要說清楚：角色、任務、讀者、語氣、長度、格式、成功標準。</li>
+        <li>可以請 AI 反問你問題，把需求問清楚再寫。</li>
+        <li>最後的 Prompt 要能「帶著走」，在至少 3 個 LLM 測試結果都穩定。</li>
+      </ul>
+    </section>
+
+    <section class="concept">
+      <h2>核心概念</h2>
+      <p><dfn>LLM</dfn>（大型語言模型）其實是在猜「下一個字最可能是什麼」，所以你給的脈絡越完整，它猜得越準。直覺寫的 Prompt 通常太短，AI 只能自己腦補。</p><p>比較好的流程是：先寫直覺版 → 請 AI 產生草稿 → 讓 AI 列出它需要知道的問題 → 回答後整合成<dfn>可攜式 Prompt</dfn>。</p>
+      <div class="callout"><strong>比喻</strong>像點飲料：只說「一杯茶」店員會亂做；說「大杯四季春、微糖少冰」才會拿到你要的那杯。</div>
+    </section>
+
+    <section class="steps">
+      <h2>實作流程</h2>
+      <ol>
+        <li>寫下最直覺的 Prompt，例如「幫我寫一篇介紹我自己做的 unity 開發文章」。</li>
+        <li>讓 AI 先寫一版，觀察哪裡不是你要的。</li>
+        <li>請 AI 反問：讀者是誰？語氣？長度？要強調什麼？</li>
+        <li>把答案整理成結構化的最終 Prompt。</li>
+        <li>丟到 ChatGPT、Gemini、Claude 三個模型測試並比較。</li>
+      </ol>
+      <pre><code># 角色：你是擅長寫技術部落格的大學生
+# 任務：介紹我用 Unity 做的《Overcooked》料理遊戲
+# 讀者：想學 Unity 的同學
+# 語氣：第一人稱、輕鬆，但每段有重點
+# 長度：600～800 字，4 個小段落
+# 必須包含：遇到的問題與解法（Play 模式修改不會存檔、
+#           用 Inspector 欄位調數值）</code></pre>
+    </section>
+
+    <section class="homework">
+      <h2>我的作業</h2>
+      <p>主題是介紹我自己做的 Unity《Overcooked》料理遊戲：我寫了角色移動、拿放物品、切菜煮菜擺盤、訂單判定、計時與計分。透過反問把讀者、語氣、長度都定下來，最後在三個 LLM 測試。</p>
+    </section>
+
+    <section class="pitfalls">
+      <h2>踩雷與提醒</h2>
+      <div class="callout warn"><strong>不要一次塞太多要求</strong>條列分段寫，比一大段話更不容易被 AI 漏掉。</div>
+      <div class="callout warn"><strong>每個模型的預設風格不同</strong>同一個 Prompt 在不同模型長度、語氣會差很多，要實測，不能只看一個。</div>
+    </section>
+
+    <section class="next">
+      <h2>延伸思考</h2>
+      <ul>
+        <li>如果 Prompt 是寫給程式用的（例如聊天機器人的 system prompt），寫法會有什麼不同？</li>
+      </ul>
+    </section>
+  </main>
+
+  <nav class="pager"></nav>
+
+  <footer>靜宜大學 資工二A 蔡儀叡 · 用 AI 依 CLAUDE.md 規則製作</footer>
+
+  <script src="../assets/lessons.js"></script>
+  <script src="../assets/lesson.js"></script>
+</body>
+</html>
